@@ -30,15 +30,15 @@
     <a
       href="#"
       class="transform text-center font-semibold text-gray-500 duration-300 hover:text-gray-300"
-      >FORGOT PASSWORD?</a
+      >Esqueceu a senha?</a
     >
 
     <p class="text-center text-lg">
-      No account?
+      Não tem conta?
       <a
         href="#"
         class="font-medium text-indigo-500 underline-offset-4 hover:underline"
-        >Create One</a
+        >Criar conta</a
       >
     </p>
   </section>
