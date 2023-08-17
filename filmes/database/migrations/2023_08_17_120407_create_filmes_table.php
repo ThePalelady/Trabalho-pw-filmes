@@ -13,16 +13,14 @@ class CreateFilmesTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('produtos', function (Blueprint $table) {
+        Schema::create('filmes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('categoria');
+            $table->string('imagem');
             $table->string('sipnose');
-            $table->string('sipnose');
-            $table->string('sipnose');
-            $table->string('sipnose');
-            $table->float('price')->default(0);
-            $table->unsignedInteger('quantity')->default(0);
+            $table->string('link');
+            $table->float('ano')->default(0);
             $table->timestamps();
         });
     }
@@ -32,5 +30,6 @@ class CreateFilmesTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produtos');
+        Schema::dropIfExists('filmes');
     }
+}

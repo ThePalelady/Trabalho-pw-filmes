@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Filme;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
