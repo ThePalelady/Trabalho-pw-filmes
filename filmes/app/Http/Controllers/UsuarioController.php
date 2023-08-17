@@ -2,60 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filme;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UsuarioController extends Controller
 {
     public function index()
     {
-        // Retorna a lista de usuários
+        // Lógica para exibir a lista de filmes para o usuário
+        $filmes = Filme::all();
+        return view('usuario.filmes.index', compact('filmes'));
     }
-    public function login(Request $request) {
-        // Se for POST, tenta logar
-        if ($request->isMethod('POST')) {
-            $data = $request->validate([
-                'email' => 'required',
-                'password' => 'required',
-            ]);
 
-            if (Auth::attempt($data)) {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('login')->with('erro', 'Deu ruim!');
-            }
+    public function register(Request $request)
+    {
+        // Lógica para criar uma nova conta de usuário
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        return redirect()->route('usuario.filmes.index');
+    }
+
+    public function showLoginForm()
+    {
+        // formulário de login
+        return view('usuario.login');
+    }
+
+    public function login(Request $request)
+    {
+        // autenticar
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('usuario.filmes.index');
+        } else {
+
+            return redirect()->route('usuario.login')->withErrors(['login' => 'Credenciais inválidas']);
         }
-
-        // Não era POST...
-        return view('usuarios.login');
     }
 
-    public function show($id)
+    public function logout()
     {
-        // Retorna informações de um usuário específico
-    }
-
-    public function create()
-    {
-        // Exibe o formulário de criação de usuário
-    }
-
-    public function store(Request $request)
-    {
-        // Armazena um novo usuário no banco de dados
-    }
-
-    public function edit($id)
-    {
-        // Exibe o formulário de edição de usuário
-    }
-
-    public function update(Request $request, $id)
-    {
-        // Atualiza as informações de um usuário no banco de dados
-    }
-
-    public function destroy($id)
-    {
-        // Remove um usuário do banco de dados
+        Auth::logout();
+        return redirect()->route('usuario.login');
     }
 }

@@ -1,22 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\UsuarioController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', [UsuarioController::class, 'index'])->name('login');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('/usuario')->middleware('auth')->group(function () {
+    Route::get('', [UsuariosController::class, 'index'])->name('usuario');
+
+    Route::get('view', [UsuarioController::class, 'view'])->name('usuario.view');
+
+    Route::get('add', [UsuarioController::class, 'add'])->name('usuario.add');
+
+    Route::post('add', [UsuarioController::class, 'add']);
+
+    Route::get('edit', [UsuarioController::class, 'edit'])->name('usuario.edit');
+
+    Route::get('delete', [UsuarioController::class, 'delete'])->name('usuario.delete');
+
 });
-
 Route::get('login', [UsuarioController::class, 'login'])->name('login');
 Route::post('login', [UsuarioController::class, 'login'])->name('login');
 

@@ -1,3 +1,5 @@
+@section('title', '')
+
 <!DOCTYPE html>
 <html>
 <head>
