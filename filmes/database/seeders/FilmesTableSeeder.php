@@ -6,13 +6,8 @@ use Illuminate\Database\Seeder;
 
 class FilmesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        //
+        Filme::factory(10)->create(); // Cria 10 filmes fictícios
     }
 }

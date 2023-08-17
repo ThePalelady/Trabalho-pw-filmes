@@ -11,21 +11,26 @@ class CreateFilmesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('filmes', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('categoria');
+            $table->string('sipnose');
+            $table->string('sipnose');
+            $table->string('sipnose');
+            $table->string('sipnose');
+            $table->float('price')->default(0);
+            $table->unsignedInteger('quantity')->default(0);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('filmes');
+        Schema::dropIfExists('produtos');
     }
-}

@@ -5,6 +5,7 @@ use app\Http\Controllers\UsuarioController;
 
 Route::get('/', [UsuarioController::class, 'index'])->name('login');
 
+
 Route::prefix('/usuario')->middleware('auth')->group(function () {
     Route::get('', [UsuariosController::class, 'index'])->name('usuario');
 
